@@ -1,0 +1,47 @@
+# ==============================================================================
+# 外送系統 Git 排除清單 (.gitignore)
+# ==============================================================================
+
+# 1. 敏感憑證與環境設定 (Secrets & Environment)
+.env
+.env.local
+.env.*.local
+
+# 2. Python 虛擬環境與快取 (Python)
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+.pytest_cache/
+.mypy_cache/
+
+# 3. 前端 Node 依賴與建置輸出 (Node / React)
+node_modules/
+dist/
+build/
+.eslintcache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+node-portable/
+
+# 4. 本地資料庫與檔案 (Databases)
+*.db
+*.sqlite3
+*.db-journal
+*.db-shm
+*.db-wal
+
+# 5. 作業系統與開發工具快取 (OS & IDEs)
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
