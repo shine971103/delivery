@@ -1,28 +1,19 @@
-databases:
-  # 1. PostgreSQL 資料庫服務
-  - name: delivery-db
-    plan: free
-    ipAllowList: [] # 僅允許 Render 內部服務連線
-
 services:
-  # 2. FastAPI 後端 Web Service
+  # 1. FastAPI 後端 Web Service
   - type: web
     name: delivery-backend
     env: python
-    plan: free
     buildCommand: "pip install -r backend/requirements.txt"
     startCommand: "python -m uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT"
     envVars:
       - key: DATABASE_URL
-        fromDatabase:
-          name: delivery-db
-          property: connectionString
+        sync: false # 不在設定檔硬編碼敏感連線字串，由 Render 部署時提示手動輸入
       - key: JWT_SECRET
         generateValue: true
       - key: APP_ENV
         value: production
 
-  # 3. React 前端 Static Site 服務
+  # 2. React 前端 Static Site 服務
   - type: web
     name: delivery-frontend
     env: static
