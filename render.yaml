@@ -1,10 +1,10 @@
-services:
+databases:
   # 1. PostgreSQL 資料庫服務
-  - type: db
-    name: delivery-db
+  - name: delivery-db
     plan: free
     ipAllowList: [] # 僅允許 Render 內部服務連線
 
+services:
   # 2. FastAPI 後端 Web Service
   - type: web
     name: delivery-backend
