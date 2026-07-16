@@ -1,28 +1,38 @@
 :root {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  line-height: 1.5;
+  font-family: 'Outfit', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
   font-weight: 400;
 
   color-scheme: light;
-  color: #2c3e50;
-  background-color: #f8f9fa;
+  color: #1e293b;
+  background-color: #f8fafc;
 
-  /* 主題色 (亮橙色) */
+  /* 主題色系 */
   --primary: #ff5722;
-  --primary-hover: #e64a19;
-  --primary-light: #ffebee;
-  --primary-bg: #fff3e0;
-  --text-dark: #2c3e50;
-  --text-light: #7f8c8d;
-  --border-color: #e0e0e0;
-  --white: #ffffff;
-  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  
-  /* 角色標記顏色 */
+  --primary-hover: #f4511e;
+  --primary-light: #fff3e0;
+  --primary-gradient: linear-gradient(135deg, #ff5722 0%, #ff8a00 100%);
   --customer-color: #ff5722;
+  --customer-gradient: linear-gradient(135deg, #ff5722 0%, #ff8a00 100%);
   --merchant-color: #e91e63;
-  --rider-color: #4caf50;
+  --merchant-gradient: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+  --rider-color: #10b981;
+  --rider-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+
+  /* 基本顏色設定 */
+  --text-dark: #0f172a;
+  --text-medium: #475569;
+  --text-light: #94a3b8;
+  --border-color: #e2e8f0;
+  --white: #ffffff;
+  
+  /* 陰影與玻璃化效果 */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.4);
 }
 
 * {
@@ -34,7 +44,8 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #f4f6f8;
+  background: radial-gradient(circle at 10% 20%, rgba(255, 243, 224, 0.5) 0%, rgba(248, 250, 252, 1) 90%);
+  background-attachment: fixed;
 }
 
 #root {
@@ -47,36 +58,40 @@ body {
 a {
   color: var(--primary);
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s;
+  font-weight: 600;
+  transition: all 0.2s ease;
 }
 
 a:hover {
   color: var(--primary-hover);
+  text-decoration: underline;
 }
 
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   color: var(--text-dark);
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
-/* 核心按鈕樣式 */
+/* 按鈕樣式 */
 button {
-  border-radius: 8px;
+  border-radius: 10px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 600;
+  padding: 0.75em 1.5em;
+  font-size: 0.95em;
+  font-weight: 700;
   font-family: inherit;
-  background-color: var(--primary);
+  background: var(--primary-gradient);
   color: var(--white);
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 10px rgba(255, 87, 34, 0.25);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 button:hover {
-  background-color: var(--primary-hover);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(255, 87, 34, 0.35);
 }
 
 button:active {
@@ -84,7 +99,9 @@ button:active {
 }
 
 button:disabled {
-  background-color: #bdc3c7;
+  background: #cbd5e1;
+  color: #94a3b8;
+  box-shadow: none;
   cursor: not-allowed;
   transform: none;
 }
@@ -92,46 +109,124 @@ button:disabled {
 /* 輸入框樣式 */
 input, select, textarea {
   width: 100%;
-  padding: 0.8rem 1rem;
-  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
   border: 1px solid var(--border-color);
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-family: inherit;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  background-color: var(--white);
+  color: var(--text-dark);
+  transition: all 0.2s ease;
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 input:focus, select:focus, textarea:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.15);
+  background-color: var(--white);
+  box-shadow: 0 0 0 4px rgba(255, 87, 34, 0.12);
 }
 
-/* 卡片排版 */
+/* 卡片排版 (玻璃擬態) */
 .card {
-  background-color: var(--white);
-  border-radius: 12px;
-  box-shadow: var(--shadow);
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
   padding: 2rem;
   margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+/* 現代化表單排版 */
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-medium);
 }
 
 /* 通知與警示 */
 .alert {
-  padding: 1rem;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  font-weight: 500;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  margin-bottom: 1.25rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  animation: fadeIn 0.3s ease-out;
+  box-shadow: var(--shadow-sm);
 }
 
 .alert-danger {
-  background-color: #ffebee;
-  color: #c62828;
-  border: 1px solid #ffcdd2;
+  background-color: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fee2e2;
 }
 
 .alert-success {
-  background-color: #e8f5e9;
-  color: #2e7d32;
-  border: 1px solid #c8e6c9;
+  background-color: #f0fdf4;
+  color: #166534;
+  border: 1px solid #dcfce7;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 分頁按鈕樣式 */
+.tab-container {
+  display: flex;
+  background-color: #f1f5f9;
+  padding: 4px;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border-color);
+}
+
+.tab-btn {
+  flex: 1;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  color: var(--text-medium);
+  box-shadow: none;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  transform: none;
+  color: var(--text-dark);
+  box-shadow: none;
+}
+
+.tab-btn.active {
+  background-color: var(--white);
+  color: var(--text-dark);
+  box-shadow: var(--shadow-sm);
+}
+
+/* 網頁主容器 */
+.app-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  width: 100%;
 }
