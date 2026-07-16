@@ -23,11 +23,12 @@ services:
         value: production
 
   # 3. React 前端 Static Site 服務
-  - type: static
+  - type: web
     name: delivery-frontend
+    env: static
     plan: free
     buildCommand: "cd frontend && npm install && npm run build"
-    publishDir: "frontend/dist"
+    staticPublishPath: "frontend/dist"
     envVars:
       - key: VITE_API_URL
         fromService:
