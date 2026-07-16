@@ -3,6 +3,7 @@ services:
   - type: web
     name: delivery-backend
     env: python
+    plan: free # 強制宣告使用免費方案，避免 Render 要求輸入信用卡號
     buildCommand: "pip install -r backend/requirements.txt"
     startCommand: "python -m uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT"
     envVars:
